@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+    <script src="https://unpkg.com/hyperscript.org@0.9.11"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <title>Civilian Harm Incident Report</title>
+  </head>
+  <body>
+    <header class="container-fluid" style="text-align: center; padding:0; margin:0;">
+        <h1>Civilian Harm Incident Report</h1>
+    </header>
+    <main class="container-fluid" style="text-align: left; padding:0; margin:0;">
+        <form action="/action" method="post" enctype="multipart/form-data">
+            <label class="control-label">Fullname:</label>
+            <div class="col-md-2"><input id="fullname" type="text" name="fullname" placeholder="Full Name" aria-label="Enter full name (First M. Last)" /><br></div>
+            <label class="control-label">E-Mail:</label>
+            <div class="col-md-2"><input type="email" name="email" placeholder="E-Mail" /><br></div>
+            <label class="control-label">Phone:</label>
+            <div class="col-md-2"><input type="text" name="phone" placeholder="Phone" /><br></div>
+            <label class="control-label">Date/Time:</label>
+            <div class="col-md-2"><input type="datetime-local" name="date" placeholder="Date of Incident" /><br></div>
+            <div class="col-md-2"><label class="control-label">Location:</label></div>
+            <div class="col-md-2"><input type="text" name="location" placeholder="Location of Incident" /><br></div>
+            <label class="control-label">Incident:</label>
+            <div class="col-md-2"><input type="text" name="incident" placeholder="Incident Details" /><br></div>
+            <div class="col-md-2"><input type="submit" value="Submit" /></div>
+        </form>
+    </main>
+  </body>
+</html>
