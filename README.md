@@ -8,5 +8,7 @@
 - chmr-dal-proto1     - [Data Abstraction Layer] DAL that hides storage implementation.
 - redis-query         - Lists all records in redis (not shown in diagram).
 
-[Redis Datalake] container is downloaded then started by running:
-  docker run -p 6379:6379 --name redis-server --rm --network mynet redis
+[Redis Datalake] container:
+1. Donwload Redis.
+2. Start by running the following command (private network name must match the other containers).
+  docker run -p 6379:6379 --name redis-server --rm --network <private network name> redis
