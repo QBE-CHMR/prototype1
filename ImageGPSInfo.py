@@ -37,8 +37,9 @@ class ImageGPSInfo(object):
             return data[key]
         return None
 
-    def DMStoDD(self, value):
-        return float(value[0]) + (float(value[1]) / 60.0) + (float(value[2]) / 3600.0)
+    def DMStoDD(self, latOrLon, ref):
+        dd_value = float(latOrLon[0]) + (float(latOrLon[1]) / 60.0) + (float(latOrLon[2]) / 3600.0)
+        return 0-dd_value if (ref == 'S' or ref == 'W') else dd_value
 
     def getLatLon(self, gps_info):
         lat = None
@@ -51,22 +52,7 @@ class ImageGPSInfo(object):
         gps_longitude = self.getDictValue(gps_info, 'GPSLongitude')
         gps_longitude_ref = self.getDictValue(gps_info, 'GPSLongitudeRef')
         if gps_latitude and gps_latitude_ref and gps_longitude and gps_longitude_ref:
-            lat = self.DMStoDD(gps_latitude)
-            if gps_latitude_ref != "N":                     
-                lat = 0 - lat
-            lon = self.DMStoDD(gps_longitude)
-            if gps_longitude_ref != "E":
-                lon = 0 - lon
+            lat = self.DMStoDD(gps_latitude, gps_latitude_ref)
+            lon = self.DMStoDD(gps_longitude, gps_longitude_ref)
         return lat, lon
 
-
-def main(path_name):
-    meta_data =  ImageGPSInfo(path_name)
-    
-    if meta_data.gps_info is not None:
-        print(meta_data.lat_lon)
-    else:
-        print("GEO Tagging Data not present in image.")
-
-if __name__ == '__main__':
-   main()
