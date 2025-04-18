@@ -33,7 +33,7 @@ const server = Bun.serve({
     jsonStr = JSON.stringify(chirObject);
 
     // send to dal
-    const response = await fetch('chmr-dal-proto1:2000/api/chir/create', {
+    const response = await fetch('dal:2000/api/chir/create', {
       method: 'POST',
       body
     });

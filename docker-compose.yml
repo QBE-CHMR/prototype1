@@ -1,33 +1,41 @@
-version: '3.8'
-
 networks:
   mynet:
     driver: bridge
 
 services:
-  chmr-dal-proto1:
-    build:
-      context: ./chmr-dal-proto1
-    networks:
-      - mynet
-
-  chmr-intake-proto1:
+  intake:
     build:
       context: ./chir-intake-proto1
+    container_name: "intake"
     ports:
-      - "8080:8080"
+      - "8080:8080/tcp"
     networks:
       - mynet
+    depends_on:
+      - dal
+
+  dal:
+    build:
+      context: ./chmr-dal-proto1
+    container_name: "dal"
+    networks:
+      - mynet
+    depends_on:
+      - redis-server
 
   redis-query:
     build:
       context: ./redis-query
+    container_name: "redis-query"
     ports:
-      - "8088:80"
+      - "8088:80/tcp"
     networks:
       - mynet
+    depends_on:
+      - redis-server
 
-  chmr-dmz-redis:
+  redis-server:
     image: redis:latest
+    container_name: "redis-server"
     networks:
       - mynet
