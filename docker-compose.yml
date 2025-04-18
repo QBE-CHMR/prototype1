@@ -1,0 +1,33 @@
+version: '3.8'
+
+networks:
+  mynet:
+    driver: bridge
+
+services:
+  chmr-dal-proto1:
+    build:
+      context: ./chmr-dal-proto1
+    networks:
+      - mynet
+
+  chmr-intake-proto1:
+    build:
+      context: ./chir-intake-proto1
+    ports:
+      - "8080:8080"
+    networks:
+      - mynet
+
+  redis-query:
+    build:
+      context: ./redis-query
+    ports:
+      - "8088:80"
+    networks:
+      - mynet
+
+  chmr-dmz-redis:
+    image: redis:latest
+    networks:
+      - mynet

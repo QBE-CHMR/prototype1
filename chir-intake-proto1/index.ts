@@ -1,9 +1,10 @@
+
 interface chir {
   [key: string]: string;
 }
 
 const server = Bun.serve({
-  port: 3000,
+  port: process.env.LISTEN_PORT,
   async fetch(req) {
     const url = new URL(req.url);
     console.log('req.method: ', req.method)

@@ -8,5 +8,5 @@ RUN bun install
 
 # run the app
 USER bun
-EXPOSE 3000/tcp
+EXPOSE 8080/tcp
 ENTRYPOINT [ "bun", "run", "index.ts" ]

@@ -1,0 +1,1 @@
+docker run --name redis-server --rm --network mynet redis
